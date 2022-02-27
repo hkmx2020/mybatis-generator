@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 生成的Java文件的编码-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- mysql分页插件 -->
+        <plugin type="com.qiukeke.mybatis.plugins.MySQLLimitPlugin"></plugin>
+
+<!--        生成数据库表对应的注释-->
+        <commentGenerator type="com.mybatis.generator.util.MyCommentGenerator"/>
+
+        <!-- 配置插件 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/db2021?useSSL=false" userId="root" password="123456" />
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+            <!-- 类型解析器 -->
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.mybatis.generator.model" targetProject="src/main/java">
+            <!-- 实体类 -->
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="xml.generated" targetProject="src/main/resources" >
+            <!-- 实体类SQL映射文件 -->
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- Mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mybatis.generator.mapper.generated" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 基础表 -->
+        <table tableName="t_user" domainObjectName="User" mapperName="UserMapper" />
+    </context>
+</generatorConfiguration>
